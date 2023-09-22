@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Customer Churn Prediction</title>
-</head>
+
 <body>
 
 <h1>Customer Churn Prediction</h1>
@@ -55,4 +51,3 @@
 
 
 </body>
-</html>
