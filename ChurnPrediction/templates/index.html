@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Churn Prediction</title>
+    <style>
+        body {
+            background-color: #333; /* Dark background color */
+            color: white; /* Text color */
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: orange; /* Header color */
+        }
+
+        form {
+            margin: 20px;
+            padding: 20px;
+            background-color: #444; /* Form background color */
+            border: 1px solid #555; /* Form border */
+            border-radius: 5px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        input[type="number"],
+        select,
+        button[type="button"],
+        input[type="submit"] {
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #555; /* Input and button background color */
+            color: white; /* Input and button text color */
+        }
+
+        select {
+            width: 30%;
+        }
+
+        button[type="button"] {
+            background-color: orange; /* Orange button background color */
+            cursor: pointer;
+        }
+
+        button[type="submit"] {
+            background-color: orange; /* Orange button background color */
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ff6600; /* Darker orange on hover */
+        }
+
+        #appliance-container {
+            margin-top: 10px;
+        }
+
+        .appliance-group {
+            margin: 10px 0;
+        }
+
+        .appliance-select {
+            width: 80%;
+            background-color: #555; /* Select background color */
+            color: white; /* Select text color */
+        }
+    </style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <h1>Churn Prediction</h1>
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        
+        <p>Enter the customer's Age:</p>
+        <input type="number" name="age" id="age">
+
+        <p>Gender:</p>
+        <select name="gender" id="gender">
+            <option value="male">male</option>
+            <option value="female">female</option>
+        </select>
+
+        <p>Location (City): </p>
+        <select name="Location" id="Location">
+            <option value="Los Angeles">Los Angeles</option>
+            <option value="New York">New York</option>
+            <option value="Miami">Miami</option>
+            <option value="Chicago">Chicago</option>
+            <option value="Houston">Houston</option>"
+        </select>
+
+        <p>Subscription Length(in Months):</p>
+        <input type="number" name="Subscription_Length_Months" id="Subscription_Length_Months">
+
+        <p>Enter Monthly Bill (USD):</p>
+        <input type="number" name="Monthly_Bill" id="Monthly_Bill">
+        
+        <P>Enter Total Usage(GB):</P>
+        <input type="number" name="Total_Usage_GB"><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="result-container">
+        <h3>Result: </h3>
+    </div>
+    
+</body>
+
+<script>
+    $(document).ready(function () {
+        // Attach an event handler to the form submission
+        $('form').on('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+            
+            // Serialize the form data
+            var formData = $(this).serialize();
+            
+            // Send a POST request to your Django view
+            $.post('', formData, function (data) {
+                // Update the result container with the result from the JSON response
+                var $resultH3 = $('<h3>').text('Result: ' + data.result);
+                $('#result-container').empty().append($resultH3);
+            }, 'json');
+        });
+    });
+</script>
+
+</html>
